@@ -47,13 +47,13 @@ import io.github.prolobjectlink.prolog.PrologProvider;
 import io.github.prolobjectlink.prolog.PrologQuery;
 import io.github.prolobjectlink.prolog.PrologTerm;
 import io.github.prolobjectlink.prolog.PrologVariable;
-import io.github.prolobjectlink.prolog.tuprolog.TuProlog;
 
 public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements BenchmarkRunner {
 
 	@State(Scope.Benchmark)
 	public static class ExecutionPlan {
 
+		PrologProvider provider;
 		PrologEngine engine;
 		PrologQuery query;
 
@@ -174,6 +174,34 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 			engine.assertz("salary( 8, 4500 )");
 			engine.assertz("salary( 9, 5000 )");
 
+			// index
+			engine.assertz(provider.newAtom("index_clause"),
+
+					provider.newStructure("p", provider.newAtom("a")),
+					provider.newStructure("p", provider.newList(provider.newAtom("a"))),
+					provider.newStructure("p", provider.newStructure("s", provider.newAtom("a"))),
+					provider.newStructure("p", provider.newAtom("b")),
+					provider.newStructure("p", provider.newList(provider.newAtom("b"))),
+					provider.newStructure("p", provider.newStructure("t", provider.newAtom("b"))),
+					provider.newStructure("p", provider.newAtom("c")),
+					provider.newStructure("p", provider.newList(provider.newAtom("c"))),
+					provider.newStructure("p", provider.newStructure("u", provider.newAtom("c"))),
+					provider.newStructure("p", provider.newAtom("d")),
+					provider.newStructure("p", provider.newList(provider.newAtom("d"))),
+					provider.newStructure("p", provider.newStructure("v", provider.newAtom("d"))),
+					provider.newStructure("p", provider.newAtom("e")),
+					provider.newStructure("p", provider.newList(provider.newAtom("e"))),
+					provider.newStructure("p", provider.newStructure("w", provider.newAtom("e"))),
+					provider.newStructure("p", provider.newAtom("f")),
+					provider.newStructure("p", provider.newList(provider.newAtom("f"))),
+					provider.newStructure("p", provider.newStructure("x", provider.newAtom("f"))),
+					provider.newStructure("p", provider.newAtom("g")),
+					provider.newStructure("p", provider.newList(provider.newAtom("g"))),
+
+					provider.newStructure("p", provider.newStructure("y", provider.newAtom("g")))
+
+			);
+
 		}
 	}
 
@@ -192,6 +220,36 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 	public void benchQueryAll(ExecutionPlan plan) {
 		plan.engine.query("employee(Name,Dpto,Scale),department(Dpto,DepartmentName),salary(Scale,Money)")
 				.allSolutions();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void indexClause(ExecutionPlan plan) {
+
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("a")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("a"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("s", plan.provider.newAtom("a"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("b")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("b"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("t", plan.provider.newAtom("b"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("c")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("c"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("u", plan.provider.newAtom("c"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("d")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("d"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("v", plan.provider.newAtom("d"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("e")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("e"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("w", plan.provider.newAtom("e"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("f")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("f"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("x", plan.provider.newAtom("f"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newAtom("g")));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newList(plan.provider.newAtom("g"))));
+		plan.engine.query(plan.provider.newStructure("p", plan.provider.newStructure("y", plan.provider.newAtom("g"))));
+
 	}
 
 	public static void main(String[] args) throws RunnerException {
