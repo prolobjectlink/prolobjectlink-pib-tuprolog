@@ -556,6 +556,72 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 
 			engine.assertz(provider.newAtom("env12_0"));
 
+			// dereference
+			engine.assertz("dereference:-"
+
+					+ "make_list(500, L1, _),"
+
+					+ "make_list(500, L2, Last),"
+
+					+ "bind_forward(L1),"
+
+					+ "bind_backward(L2),"
+
+					+ "L2 = [a|_],"
+
+					+ "bind_refs(L1, Last)");
+
+			engine.assertz("bind_refs(First, Last):-"
+
+					+ "ref(First),"
+
+					+ "ref(Last)");
+
+			engine.assertz("ref(Cons) :-"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_],"
+
+					+ "Cons = [a|_]");
+
+			engine.assertz("bind_forward([a]) :- !");
+			engine.assertz("bind_forward([X, Y|T]) :-"
+
+					+ "equal(X, Y),"
+
+					+ "bind_forward([Y|T])");
+
+			engine.assertz("bind_backward([_X]) :- !");
+			engine.assertz("bind_backward([X, Y|T]) :-"
+
+					+ "bind_backward([Y|T]),"
+
+					+ "equal(X, Y)");
+
+			engine.assertz("equal(X, X)");
+
+			engine.assertz("make_list(1, L, L) :- L = [_X]");
+			engine.assertz("make_list(N, [_X|Rest], Last) :-"
+
+					+ "N > 1,"
+
+					+ "N1 is N - 1,"
+
+					+ "make_list(N1, Rest, Last)");
+
 		}
 	}
 
@@ -614,6 +680,14 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	public void enviroment0Arg(ExecutionPlan plan) {
 		plan.engine.query("enviroment0ar").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void dereference(ExecutionPlan plan) {
+		plan.engine.query("dereference").oneSolution();
 	}
 
 	public static void main(String[] args) throws RunnerException {
