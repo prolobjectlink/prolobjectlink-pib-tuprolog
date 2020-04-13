@@ -622,6 +622,142 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 
 					+ "make_list(N1, Rest, Last)");
 
+			// choice point
+
+			engine.assertz("choice_point:-ccp1(0,0,0)");
+			engine.assertz("choice_point0ar:-ccp1_0");
+
+			engine.assertz("backtrack1:-pd(_,_,_)");
+			engine.assertz("backtrack2:-ps(_,a,d)");
+
+			engine.assertz("ccp1(X,Y,Z):-ccp2(X,Y,Z)");
+			engine.assertz("ccp1(_X,_Y,_Z)");
+			engine.assertz("ccp2(X,Y,Z):-ccp3(X,Y,Z)");
+			engine.assertz("ccp2(_X,_Y,_Z)");
+			engine.assertz("ccp3(X,Y,Z):-ccp4(X,Y,Z)");
+			engine.assertz("ccp3(_X,_Y,_Z)");
+			engine.assertz("ccp4(X,Y,Z):-ccp5(X,Y,Z)");
+			engine.assertz("ccp4(_X,_Y,_Z)");
+			engine.assertz("ccp5(X,Y,Z):-ccp6(X,Y,Z)");
+			engine.assertz("ccp5(_X,_Y,_Z)");
+			engine.assertz("ccp6(X,Y,Z):-ccp7(X,Y,Z)");
+			engine.assertz("ccp6(_X,_Y,_Z)");
+			engine.assertz("ccp7(X,Y,Z):-ccp8(X,Y,Z)");
+			engine.assertz("ccp7(_X,_Y,_Z)");
+			engine.assertz("ccp8(X,Y,Z):-ccp9(X,Y,Z)");
+			engine.assertz("ccp8(_X,_Y,_Z)");
+			engine.assertz("ccp9(X,Y,Z):-ccp10(X,Y,Z)");
+			engine.assertz("ccp9(_X,_Y,_Z)");
+			engine.assertz("ccp10(X,Y,Z):-ccp11(X,Y,Z)");
+			engine.assertz("ccp10(_X,_Y,_Z)");
+			engine.assertz("ccp11(X,Y,Z):-ccp12(X,Y,Z)");
+			engine.assertz("ccp11(_X,_Y,_Z)");
+			engine.assertz("ccp12(X,Y,Z):-ccp13(X,Y,Z)");
+			engine.assertz("ccp12(_X,_Y,_Z)");
+			engine.assertz("ccp13(X,Y,Z):-ccp14(X,Y,Z)");
+			engine.assertz("ccp13(_X,_Y,_Z)");
+			engine.assertz("ccp14(X,Y,Z):-ccp15(X,Y,Z)");
+			engine.assertz("ccp14(_X,_Y,_Z)");
+			engine.assertz("ccp15(X,Y,Z):-ccp16(X,Y,Z)");
+			engine.assertz("ccp15(_X,_Y,_Z)");
+			engine.assertz("ccp16(X,Y,Z):-ccp17(X,Y,Z)");
+			engine.assertz("ccp16(_X,_Y,_Z)");
+			engine.assertz("ccp17(X,Y,Z):-ccp18(X,Y,Z)");
+			engine.assertz("ccp17(_X,_Y,_Z)");
+			engine.assertz("ccp18(X,Y,Z):-ccp19(X,Y,Z)");
+			engine.assertz("ccp18(_X,_Y,_Z)");
+			engine.assertz("ccp19(X,Y,Z):-ccp20(X,Y,Z)");
+			engine.assertz("ccp19(_X,_Y,_Z)");
+			engine.assertz("ccp20(_X,_Y,_Z)");
+			engine.assertz("ccp20(_X,_Y,_Z)");
+
+			engine.assertz("ccp1_0:-ccp2_0");
+			engine.assertz("ccp1_0");
+			engine.assertz("ccp2_0:-ccp3_0");
+			engine.assertz("ccp2_0");
+			engine.assertz("ccp3_0:-ccp4_0");
+			engine.assertz("ccp3_0");
+			engine.assertz("ccp4_0:-ccp5_0");
+			engine.assertz("ccp4_0");
+			engine.assertz("ccp5_0:-ccp6_0");
+			engine.assertz("ccp5_0");
+			engine.assertz("ccp6_0:-ccp7_0");
+			engine.assertz("ccp6_0");
+			engine.assertz("ccp7_0:-ccp8_0");
+			engine.assertz("ccp7_0");
+			engine.assertz("ccp8_0:-ccp9_0");
+			engine.assertz("ccp8_0");
+			engine.assertz("ccp9_0:-ccp10_0");
+			engine.assertz("ccp9_0");
+			engine.assertz("ccp10_0:-ccp11_0");
+			engine.assertz("ccp10_0");
+			engine.assertz("ccp11_0:-ccp12_0");
+			engine.assertz("ccp11_0");
+			engine.assertz("ccp12_0:-ccp13_0");
+			engine.assertz("ccp12_0");
+			engine.assertz("ccp13_0:-ccp14_0");
+			engine.assertz("ccp13_0");
+			engine.assertz("ccp14_0:-ccp15_0");
+			engine.assertz("ccp14_0");
+			engine.assertz("ccp15_0:-ccp16_0");
+			engine.assertz("ccp15_0");
+			engine.assertz("ccp16_0:-ccp17_0");
+			engine.assertz("ccp16_0");
+			engine.assertz("ccp17_0:-ccp18_0");
+			engine.assertz("ccp17_0");
+			engine.assertz("ccp18_0:-ccp19_0");
+			engine.assertz("ccp18_0");
+			engine.assertz("ccp19_0:-ccp20_0");
+			engine.assertz("ccp19_0");
+			engine.assertz("ccp20_0");
+			engine.assertz("ccp20_0");
+
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(X1,X2,_):-q(X1,X2,a)");
+			engine.assertz("pd(_X1,_X2,_)");
+
+			engine.assertz("q(_X1,_X2,b)");
+
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,X,X)");
+			engine.assertz("ps(_,_,_)");
+
 		}
 	}
 
@@ -688,6 +824,38 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	public void dereference(ExecutionPlan plan) {
 		plan.engine.query("dereference").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void choicePoint(ExecutionPlan plan) {
+		plan.engine.query("choice_point").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void choicePoint0Arg(ExecutionPlan plan) {
+		plan.engine.query("choice_point0ar").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void backtrack1(ExecutionPlan plan) {
+		plan.engine.query("backtrack1").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void backtrack2(ExecutionPlan plan) {
+		plan.engine.query("backtrack2").oneSolution();
 	}
 
 	public static void main(String[] args) throws RunnerException {
