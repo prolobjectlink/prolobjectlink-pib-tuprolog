@@ -758,6 +758,235 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 			engine.assertz("ps(_,X,X)");
 			engine.assertz("ps(_,_,_)");
 
+			// unif
+			engine.assertz("create_list:-cl1(_, _, _)");
+
+			engine.assertz("match_list:-list100(Z),cl1(Z, Z, Z)");
+
+			engine.assertz("create_struct:-cs1(_, _, _)");
+
+			engine.assertz("match_struct:-structure100(Z),cs1(Z, Z, Z)");
+
+			engine.assertz("match_nested_structure:-nested_structure1(Z),nested_structure1(Z)");
+
+			engine.assertz("unification:-nested_structure1(A),nested_structure2(B),unify(A, B)");
+
+			engine.assertz("unify(X, X)");
+
+			engine.assertz(
+					"nested_structure1([a([a1([1, 2, 3], a), a2([4, 5, 6], b), a3([7, 8, 9], c)], [a4([0, 1, 2], d), a5([3, 4, 5], e), a6([6, 7, 8], f)], [a7([9, 0, 1], g), a8([2, 3, 4], h), a9([5, 6, 7], i)]), b([b1([1, 2, 3], a), b2([4, 5, 6], b), b3([7, 8, 9], c)], [b4([0, 1, 2], d), b5([3, 4, 5], e), b6([6, 7, 8], f)], [b7([9, 0, 1], g), b8([2, 3, 4], h), b9([5, 6, 7], i)]), c([c1([1, 2, 3], a), c2([4, 5, 6], b), c3([7, 8, 9], c)], [c4([0, 1, 2], d), c5([3, 4, 5], e), c6([6, 7, 8], f)], [c7([9, 0, 1], g), c8([2, 3, 4], h), c9([5, 6, 7], i)])])");
+
+			engine.assertz(
+					"nested_structure2([a([a1([1, 2, 3], a), a2([4, 5, 6], b), a3([7, 8, 9], c)], [a4([0, 1, 2], d), a5([3, 4, 5], e), a6([6, 7, 8], f)], [a7([9, 0, 1], g), a8([2, 3, 4], h), a9([5, 6, 7], i)]), b([b1([1, 2, 3], a), b2([4, 5, 6], b), b3([7, 8, 9], c)], [b4([0, 1, 2], d), b5([3, 4, 5], e), b6([6, 7, 8], f)], [b7([9, 0, 1], g), b8([2, 3, 4], h), b9([5, 6, 7], i)]), c([c1([1, 2, 3], a), c2([4, 5, 6], b), c3([7, 8, 9], c)], [c4([0, 1, 2], d), c5([3, 4, 5], e), c6([6, 7, 8], f)], [c7([9, 0, 1], g), c8([2, 3, 4], h), c9([5, 6, 7], i)])])");
+
+			engine.assertz(
+					"list100([a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a, a])");
+
+			engine.assertz(
+					"structure100(st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, st(a, nil)))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))");
+
+			engine.assertz("cl1([a|X], [a|Y], [a|Z]):-cl2(X, Y, Z)");
+			engine.assertz("cl2([a|X], [a|Y], [a|Z]):-cl3(X, Y, Z)");
+			engine.assertz("cl3([a|X], [a|Y], [a|Z]):-cl4(X, Y, Z)");
+			engine.assertz("cl4([a|X], [a|Y], [a|Z]):-cl5(X, Y, Z)");
+			engine.assertz("cl5([a|X], [a|Y], [a|Z]):-cl6(X, Y, Z)");
+			engine.assertz("cl6([a|X], [a|Y], [a|Z]):-cl7(X, Y, Z)");
+			engine.assertz("cl7([a|X], [a|Y], [a|Z]):-cl8(X, Y, Z)");
+			engine.assertz("cl8([a|X], [a|Y], [a|Z]):-cl9(X, Y, Z)");
+			engine.assertz("cl9([a|X], [a|Y], [a|Z]):-cl10(X, Y, Z)");
+			engine.assertz("cl10([a|X], [a|Y], [a|Z]):-cl11(X, Y, Z)");
+			engine.assertz("cl11([a|X], [a|Y], [a|Z]):-cl12(X, Y, Z)");
+			engine.assertz("cl12([a|X], [a|Y], [a|Z]):-cl13(X, Y, Z)");
+			engine.assertz("cl13([a|X], [a|Y], [a|Z]):-cl14(X, Y, Z)");
+			engine.assertz("cl14([a|X], [a|Y], [a|Z]):-cl15(X, Y, Z)");
+			engine.assertz("cl15([a|X], [a|Y], [a|Z]):-cl16(X, Y, Z)");
+			engine.assertz("cl16([a|X], [a|Y], [a|Z]):-cl17(X, Y, Z)");
+			engine.assertz("cl17([a|X], [a|Y], [a|Z]):-cl18(X, Y, Z)");
+			engine.assertz("cl18([a|X], [a|Y], [a|Z]):-cl19(X, Y, Z)");
+			engine.assertz("cl19([a|X], [a|Y], [a|Z]):-cl20(X, Y, Z)");
+			engine.assertz("cl20([a|X], [a|Y], [a|Z]):-cl21(X, Y, Z)");
+			engine.assertz("cl21([a|X], [a|Y], [a|Z]):-cl22(X, Y, Z)");
+			engine.assertz("cl22([a|X], [a|Y], [a|Z]):-cl23(X, Y, Z)");
+			engine.assertz("cl23([a|X], [a|Y], [a|Z]):-cl24(X, Y, Z)");
+			engine.assertz("cl24([a|X], [a|Y], [a|Z]):-cl25(X, Y, Z)");
+			engine.assertz("cl25([a|X], [a|Y], [a|Z]):-cl26(X, Y, Z)");
+			engine.assertz("cl26([a|X], [a|Y], [a|Z]):-cl27(X, Y, Z)");
+			engine.assertz("cl27([a|X], [a|Y], [a|Z]):-cl28(X, Y, Z)");
+			engine.assertz("cl28([a|X], [a|Y], [a|Z]):-cl29(X, Y, Z)");
+			engine.assertz("cl29([a|X], [a|Y], [a|Z]):-cl30(X, Y, Z)");
+			engine.assertz("cl30([a|X], [a|Y], [a|Z]):-cl31(X, Y, Z)");
+			engine.assertz("cl31([a|X], [a|Y], [a|Z]):-cl32(X, Y, Z)");
+			engine.assertz("cl32([a|X], [a|Y], [a|Z]):-cl33(X, Y, Z)");
+			engine.assertz("cl33([a|X], [a|Y], [a|Z]):-cl34(X, Y, Z)");
+			engine.assertz("cl34([a|X], [a|Y], [a|Z]):-cl35(X, Y, Z)");
+			engine.assertz("cl35([a|X], [a|Y], [a|Z]):-cl36(X, Y, Z)");
+			engine.assertz("cl36([a|X], [a|Y], [a|Z]):-cl37(X, Y, Z)");
+			engine.assertz("cl37([a|X], [a|Y], [a|Z]):-cl38(X, Y, Z)");
+			engine.assertz("cl38([a|X], [a|Y], [a|Z]):-cl39(X, Y, Z)");
+			engine.assertz("cl39([a|X], [a|Y], [a|Z]):-cl40(X, Y, Z)");
+			engine.assertz("cl40([a|X], [a|Y], [a|Z]):-cl41(X, Y, Z)");
+			engine.assertz("cl41([a|X], [a|Y], [a|Z]):-cl42(X, Y, Z)");
+			engine.assertz("cl42([a|X], [a|Y], [a|Z]):-cl43(X, Y, Z)");
+			engine.assertz("cl43([a|X], [a|Y], [a|Z]):-cl44(X, Y, Z)");
+			engine.assertz("cl44([a|X], [a|Y], [a|Z]):-cl45(X, Y, Z)");
+			engine.assertz("cl45([a|X], [a|Y], [a|Z]):-cl46(X, Y, Z)");
+			engine.assertz("cl46([a|X], [a|Y], [a|Z]):-cl47(X, Y, Z)");
+			engine.assertz("cl47([a|X], [a|Y], [a|Z]):-cl48(X, Y, Z)");
+			engine.assertz("cl48([a|X], [a|Y], [a|Z]):-cl49(X, Y, Z)");
+			engine.assertz("cl49([a|X], [a|Y], [a|Z]):-cl50(X, Y, Z)");
+			engine.assertz("cl50([a|X], [a|Y], [a|Z]):-cl51(X, Y, Z)");
+			engine.assertz("cl51([a|X], [a|Y], [a|Z]):-cl52(X, Y, Z)");
+			engine.assertz("cl52([a|X], [a|Y], [a|Z]):-cl53(X, Y, Z)");
+			engine.assertz("cl53([a|X], [a|Y], [a|Z]):-cl54(X, Y, Z)");
+			engine.assertz("cl54([a|X], [a|Y], [a|Z]):-cl55(X, Y, Z)");
+			engine.assertz("cl55([a|X], [a|Y], [a|Z]):-cl56(X, Y, Z)");
+			engine.assertz("cl56([a|X], [a|Y], [a|Z]):-cl57(X, Y, Z)");
+			engine.assertz("cl57([a|X], [a|Y], [a|Z]):-cl58(X, Y, Z)");
+			engine.assertz("cl58([a|X], [a|Y], [a|Z]):-cl59(X, Y, Z)");
+			engine.assertz("cl59([a|X], [a|Y], [a|Z]):-cl60(X, Y, Z)");
+			engine.assertz("cl60([a|X], [a|Y], [a|Z]):-cl61(X, Y, Z)");
+			engine.assertz("cl61([a|X], [a|Y], [a|Z]):-cl62(X, Y, Z)");
+			engine.assertz("cl62([a|X], [a|Y], [a|Z]):-cl63(X, Y, Z)");
+			engine.assertz("cl63([a|X], [a|Y], [a|Z]):-cl64(X, Y, Z)");
+			engine.assertz("cl64([a|X], [a|Y], [a|Z]):-cl65(X, Y, Z)");
+			engine.assertz("cl65([a|X], [a|Y], [a|Z]):-cl66(X, Y, Z)");
+			engine.assertz("cl66([a|X], [a|Y], [a|Z]):-cl67(X, Y, Z)");
+			engine.assertz("cl67([a|X], [a|Y], [a|Z]):-cl68(X, Y, Z)");
+			engine.assertz("cl68([a|X], [a|Y], [a|Z]):-cl69(X, Y, Z)");
+			engine.assertz("cl69([a|X], [a|Y], [a|Z]):-cl70(X, Y, Z)");
+			engine.assertz("cl70([a|X], [a|Y], [a|Z]):-cl71(X, Y, Z)");
+			engine.assertz("cl71([a|X], [a|Y], [a|Z]):-cl72(X, Y, Z)");
+			engine.assertz("cl72([a|X], [a|Y], [a|Z]):-cl73(X, Y, Z)");
+			engine.assertz("cl73([a|X], [a|Y], [a|Z]):-cl74(X, Y, Z)");
+			engine.assertz("cl74([a|X], [a|Y], [a|Z]):-cl75(X, Y, Z)");
+			engine.assertz("cl75([a|X], [a|Y], [a|Z]):-cl76(X, Y, Z)");
+			engine.assertz("cl76([a|X], [a|Y], [a|Z]):-cl77(X, Y, Z)");
+			engine.assertz("cl77([a|X], [a|Y], [a|Z]):-cl78(X, Y, Z)");
+			engine.assertz("cl78([a|X], [a|Y], [a|Z]):-cl79(X, Y, Z)");
+			engine.assertz("cl79([a|X], [a|Y], [a|Z]):-cl80(X, Y, Z)");
+			engine.assertz("cl80([a|X], [a|Y], [a|Z]):-cl81(X, Y, Z)");
+			engine.assertz("cl81([a|X], [a|Y], [a|Z]):-cl82(X, Y, Z)");
+			engine.assertz("cl82([a|X], [a|Y], [a|Z]):-cl83(X, Y, Z)");
+			engine.assertz("cl83([a|X], [a|Y], [a|Z]):-cl84(X, Y, Z)");
+			engine.assertz("cl84([a|X], [a|Y], [a|Z]):-cl85(X, Y, Z)");
+			engine.assertz("cl85([a|X], [a|Y], [a|Z]):-cl86(X, Y, Z)");
+			engine.assertz("cl86([a|X], [a|Y], [a|Z]):-cl87(X, Y, Z)");
+			engine.assertz("cl87([a|X], [a|Y], [a|Z]):-cl88(X, Y, Z)");
+			engine.assertz("cl88([a|X], [a|Y], [a|Z]):-cl89(X, Y, Z)");
+			engine.assertz("cl89([a|X], [a|Y], [a|Z]):-cl90(X, Y, Z)");
+			engine.assertz("cl90([a|X], [a|Y], [a|Z]):-cl91(X, Y, Z)");
+			engine.assertz("cl91([a|X], [a|Y], [a|Z]):-cl92(X, Y, Z)");
+			engine.assertz("cl92([a|X], [a|Y], [a|Z]):-cl93(X, Y, Z)");
+			engine.assertz("cl93([a|X], [a|Y], [a|Z]):-cl94(X, Y, Z)");
+			engine.assertz("cl94([a|X], [a|Y], [a|Z]):-cl95(X, Y, Z)");
+			engine.assertz("cl95([a|X], [a|Y], [a|Z]):-cl96(X, Y, Z)");
+			engine.assertz("cl96([a|X], [a|Y], [a|Z]):-cl97(X, Y, Z)");
+			engine.assertz("cl97([a|X], [a|Y], [a|Z]):-cl98(X, Y, Z)");
+			engine.assertz("cl98([a|X], [a|Y], [a|Z]):-cl99(X, Y, Z)");
+			engine.assertz("cl99([a|X], [a|Y], [a|Z]):-cl100(X, Y, Z)");
+			engine.assertz("cl100([a], [a], [a])");
+
+			engine.assertz("cs1(st(a, X), st(a, Y), st(a, Z)):-cs2(X, Y, Z)");
+			engine.assertz("cs2(st(a, X), st(a, Y), st(a, Z)):-cs3(X, Y, Z)");
+			engine.assertz("cs3(st(a, X), st(a, Y), st(a, Z)):-cs4(X, Y, Z)");
+			engine.assertz("cs4(st(a, X), st(a, Y), st(a, Z)):-cs5(X, Y, Z)");
+			engine.assertz("cs5(st(a, X), st(a, Y), st(a, Z)):-cs6(X, Y, Z)");
+			engine.assertz("cs6(st(a, X), st(a, Y), st(a, Z)):-cs7(X, Y, Z)");
+			engine.assertz("cs7(st(a, X), st(a, Y), st(a, Z)):-cs8(X, Y, Z)");
+			engine.assertz("cs8(st(a, X), st(a, Y), st(a, Z)):-cs9(X, Y, Z)");
+			engine.assertz("cs9(st(a, X), st(a, Y), st(a, Z)):-cs10(X, Y, Z)");
+			engine.assertz("cs10(st(a, X), st(a, Y), st(a, Z)):-cs11(X, Y, Z)");
+			engine.assertz("cs11(st(a, X), st(a, Y), st(a, Z)):-cs12(X, Y, Z)");
+			engine.assertz("cs12(st(a, X), st(a, Y), st(a, Z)):-cs13(X, Y, Z)");
+			engine.assertz("cs13(st(a, X), st(a, Y), st(a, Z)):-cs14(X, Y, Z)");
+			engine.assertz("cs14(st(a, X), st(a, Y), st(a, Z)):-cs15(X, Y, Z)");
+			engine.assertz("cs15(st(a, X), st(a, Y), st(a, Z)):-cs16(X, Y, Z)");
+			engine.assertz("cs16(st(a, X), st(a, Y), st(a, Z)):-cs17(X, Y, Z)");
+			engine.assertz("cs17(st(a, X), st(a, Y), st(a, Z)):-cs18(X, Y, Z)");
+			engine.assertz("cs18(st(a, X), st(a, Y), st(a, Z)):-cs19(X, Y, Z)");
+			engine.assertz("cs19(st(a, X), st(a, Y), st(a, Z)):-cs20(X, Y, Z)");
+			engine.assertz("cs20(st(a, X), st(a, Y), st(a, Z)):-cs21(X, Y, Z)");
+			engine.assertz("cs21(st(a, X), st(a, Y), st(a, Z)):-cs22(X, Y, Z)");
+			engine.assertz("cs22(st(a, X), st(a, Y), st(a, Z)):-cs23(X, Y, Z)");
+			engine.assertz("cs23(st(a, X), st(a, Y), st(a, Z)):-cs24(X, Y, Z)");
+			engine.assertz("cs24(st(a, X), st(a, Y), st(a, Z)):-cs25(X, Y, Z)");
+			engine.assertz("cs25(st(a, X), st(a, Y), st(a, Z)):-cs26(X, Y, Z)");
+			engine.assertz("cs26(st(a, X), st(a, Y), st(a, Z)):-cs27(X, Y, Z)");
+			engine.assertz("cs27(st(a, X), st(a, Y), st(a, Z)):-cs28(X, Y, Z)");
+			engine.assertz("cs28(st(a, X), st(a, Y), st(a, Z)):-cs29(X, Y, Z)");
+			engine.assertz("cs29(st(a, X), st(a, Y), st(a, Z)):-cs30(X, Y, Z)");
+			engine.assertz("cs30(st(a, X), st(a, Y), st(a, Z)):-cs31(X, Y, Z)");
+			engine.assertz("cs31(st(a, X), st(a, Y), st(a, Z)):-cs32(X, Y, Z)");
+			engine.assertz("cs32(st(a, X), st(a, Y), st(a, Z)):-cs33(X, Y, Z)");
+			engine.assertz("cs33(st(a, X), st(a, Y), st(a, Z)):-cs34(X, Y, Z)");
+			engine.assertz("cs34(st(a, X), st(a, Y), st(a, Z)):-cs35(X, Y, Z)");
+			engine.assertz("cs35(st(a, X), st(a, Y), st(a, Z)):-cs36(X, Y, Z)");
+			engine.assertz("cs36(st(a, X), st(a, Y), st(a, Z)):-cs37(X, Y, Z)");
+			engine.assertz("cs37(st(a, X), st(a, Y), st(a, Z)):-cs38(X, Y, Z)");
+			engine.assertz("cs38(st(a, X), st(a, Y), st(a, Z)):-cs39(X, Y, Z)");
+			engine.assertz("cs39(st(a, X), st(a, Y), st(a, Z)):-cs40(X, Y, Z)");
+			engine.assertz("cs40(st(a, X), st(a, Y), st(a, Z)):-cs41(X, Y, Z)");
+			engine.assertz("cs41(st(a, X), st(a, Y), st(a, Z)):-cs42(X, Y, Z)");
+			engine.assertz("cs42(st(a, X), st(a, Y), st(a, Z)):-cs43(X, Y, Z)");
+			engine.assertz("cs43(st(a, X), st(a, Y), st(a, Z)):-cs44(X, Y, Z)");
+			engine.assertz("cs44(st(a, X), st(a, Y), st(a, Z)):-cs45(X, Y, Z)");
+			engine.assertz("cs45(st(a, X), st(a, Y), st(a, Z)):-cs46(X, Y, Z)");
+			engine.assertz("cs46(st(a, X), st(a, Y), st(a, Z)):-cs47(X, Y, Z)");
+			engine.assertz("cs47(st(a, X), st(a, Y), st(a, Z)):-cs48(X, Y, Z)");
+			engine.assertz("cs48(st(a, X), st(a, Y), st(a, Z)):-cs49(X, Y, Z)");
+			engine.assertz("cs49(st(a, X), st(a, Y), st(a, Z)):-cs50(X, Y, Z)");
+			engine.assertz("cs50(st(a, X), st(a, Y), st(a, Z)):-cs51(X, Y, Z)");
+			engine.assertz("cs51(st(a, X), st(a, Y), st(a, Z)):-cs52(X, Y, Z)");
+			engine.assertz("cs52(st(a, X), st(a, Y), st(a, Z)):-cs53(X, Y, Z)");
+			engine.assertz("cs53(st(a, X), st(a, Y), st(a, Z)):-cs54(X, Y, Z)");
+			engine.assertz("cs54(st(a, X), st(a, Y), st(a, Z)):-cs55(X, Y, Z)");
+			engine.assertz("cs55(st(a, X), st(a, Y), st(a, Z)):-cs56(X, Y, Z)");
+			engine.assertz("cs56(st(a, X), st(a, Y), st(a, Z)):-cs57(X, Y, Z)");
+			engine.assertz("cs57(st(a, X), st(a, Y), st(a, Z)):-cs58(X, Y, Z)");
+			engine.assertz("cs58(st(a, X), st(a, Y), st(a, Z)):-cs59(X, Y, Z)");
+			engine.assertz("cs59(st(a, X), st(a, Y), st(a, Z)):-cs60(X, Y, Z)");
+			engine.assertz("cs60(st(a, X), st(a, Y), st(a, Z)):-cs61(X, Y, Z)");
+			engine.assertz("cs61(st(a, X), st(a, Y), st(a, Z)):-cs62(X, Y, Z)");
+			engine.assertz("cs62(st(a, X), st(a, Y), st(a, Z)):-cs63(X, Y, Z)");
+			engine.assertz("cs63(st(a, X), st(a, Y), st(a, Z)):-cs64(X, Y, Z)");
+			engine.assertz("cs64(st(a, X), st(a, Y), st(a, Z)):-cs65(X, Y, Z)");
+			engine.assertz("cs65(st(a, X), st(a, Y), st(a, Z)):-cs66(X, Y, Z)");
+			engine.assertz("cs66(st(a, X), st(a, Y), st(a, Z)):-cs67(X, Y, Z)");
+			engine.assertz("cs67(st(a, X), st(a, Y), st(a, Z)):-cs68(X, Y, Z)");
+			engine.assertz("cs68(st(a, X), st(a, Y), st(a, Z)):-cs69(X, Y, Z)");
+			engine.assertz("cs69(st(a, X), st(a, Y), st(a, Z)):-cs70(X, Y, Z)");
+			engine.assertz("cs70(st(a, X), st(a, Y), st(a, Z)):-cs71(X, Y, Z)");
+			engine.assertz("cs71(st(a, X), st(a, Y), st(a, Z)):-cs72(X, Y, Z)");
+			engine.assertz("cs72(st(a, X), st(a, Y), st(a, Z)):-cs73(X, Y, Z)");
+			engine.assertz("cs73(st(a, X), st(a, Y), st(a, Z)):-cs74(X, Y, Z)");
+			engine.assertz("cs74(st(a, X), st(a, Y), st(a, Z)):-cs75(X, Y, Z)");
+			engine.assertz("cs75(st(a, X), st(a, Y), st(a, Z)):-cs76(X, Y, Z)");
+			engine.assertz("cs76(st(a, X), st(a, Y), st(a, Z)):-cs77(X, Y, Z)");
+			engine.assertz("cs77(st(a, X), st(a, Y), st(a, Z)):-cs78(X, Y, Z)");
+			engine.assertz("cs78(st(a, X), st(a, Y), st(a, Z)):-cs79(X, Y, Z)");
+			engine.assertz("cs79(st(a, X), st(a, Y), st(a, Z)):-cs80(X, Y, Z)");
+			engine.assertz("cs80(st(a, X), st(a, Y), st(a, Z)):-cs81(X, Y, Z)");
+			engine.assertz("cs81(st(a, X), st(a, Y), st(a, Z)):-cs82(X, Y, Z)");
+			engine.assertz("cs82(st(a, X), st(a, Y), st(a, Z)):-cs83(X, Y, Z)");
+			engine.assertz("cs83(st(a, X), st(a, Y), st(a, Z)):-cs84(X, Y, Z)");
+			engine.assertz("cs84(st(a, X), st(a, Y), st(a, Z)):-cs85(X, Y, Z)");
+			engine.assertz("cs85(st(a, X), st(a, Y), st(a, Z)):-cs86(X, Y, Z)");
+			engine.assertz("cs86(st(a, X), st(a, Y), st(a, Z)):-cs87(X, Y, Z)");
+			engine.assertz("cs87(st(a, X), st(a, Y), st(a, Z)):-cs88(X, Y, Z)");
+			engine.assertz("cs88(st(a, X), st(a, Y), st(a, Z)):-cs89(X, Y, Z)");
+			engine.assertz("cs89(st(a, X), st(a, Y), st(a, Z)):-cs90(X, Y, Z)");
+			engine.assertz("cs90(st(a, X), st(a, Y), st(a, Z)):-cs91(X, Y, Z)");
+			engine.assertz("cs91(st(a, X), st(a, Y), st(a, Z)):-cs92(X, Y, Z)");
+			engine.assertz("cs92(st(a, X), st(a, Y), st(a, Z)):-cs93(X, Y, Z)");
+			engine.assertz("cs93(st(a, X), st(a, Y), st(a, Z)):-cs94(X, Y, Z)");
+			engine.assertz("cs94(st(a, X), st(a, Y), st(a, Z)):-cs95(X, Y, Z)");
+			engine.assertz("cs95(st(a, X), st(a, Y), st(a, Z)):-cs96(X, Y, Z)");
+			engine.assertz("cs96(st(a, X), st(a, Y), st(a, Z)):-cs97(X, Y, Z)");
+			engine.assertz("cs97(st(a, X), st(a, Y), st(a, Z)):-cs98(X, Y, Z)");
+			engine.assertz("cs98(st(a, X), st(a, Y), st(a, Z)):-cs99(X, Y, Z)");
+			engine.assertz("cs99(st(a, X), st(a, Y), st(a, Z)):-cs100(X, Y, Z)");
+			engine.assertz("cs100(st(a, nil), st(a, nil), st(a, nil))");
+
 		}
 	}
 
@@ -856,6 +1085,46 @@ public class TuPrologBenchmarkRunner extends AbstractBenchmarkRunner implements 
 	@OutputTimeUnit(TimeUnit.MILLISECONDS)
 	public void backtrack2(ExecutionPlan plan) {
 		plan.engine.query("backtrack2").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void createList(ExecutionPlan plan) {
+		plan.engine.query("create_list").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void createStruct(ExecutionPlan plan) {
+		plan.engine.query("create_struct").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void matchList(ExecutionPlan plan) {
+		plan.engine.query("match_list").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void matchStruct(ExecutionPlan plan) {
+		plan.engine.query("match_struct").oneSolution();
+	}
+
+	@Benchmark
+	@Fork(value = 1, warmups = 0)
+	@BenchmarkMode(Mode.AverageTime)
+	@OutputTimeUnit(TimeUnit.MILLISECONDS)
+	public void unification(ExecutionPlan plan) {
+		plan.engine.query("unification").oneSolution();
 	}
 
 	public static void main(String[] args) throws RunnerException {
